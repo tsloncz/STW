@@ -25,10 +25,10 @@ public class ConnectionTest {
     public static void main(String[] args) {
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true)
-          .setOAuthConsumerKey("ojDWQZEKdptncyUiOiUiQ")
-          .setOAuthConsumerSecret("vvTIucbWP4tmPw4t1efICfFPVGUantZwrg65BWBzjA")
-          .setOAuthAccessToken("1623087402-U9EIhuVnqQHPfuL9avhVuBvZcJgCgMMjq7BfiJt")
-          .setOAuthAccessTokenSecret("niXQLUn6wI6hKbjdQOyjoCHXPwE1vHdke8AdgIbmKzRPu");
+          .setOAuthConsumerKey("ConsumerKey")
+          .setOAuthConsumerSecret("ConsumerSecret")
+          .setOAuthAccessToken("AccessToken")
+          .setOAuthAccessTokenSecret("AccessTokenSecret");
         cb.setJSONStoreEnabled(true);
 
     //Works for print @username - tweet    
@@ -40,14 +40,13 @@ public class ConnectionTest {
             result = twitter.search(query);
             List<Status> tweets = result.getTweets();
             for (Status tweet : tweets) {
-                //Line below prints @username - tweet
+                //! Line below prints @username - tweet
                 //System.out.println("@" + tweet.getUser().getScreenName() + " - " + tweet.getText());
                 
-                //Below prints tweets in json format
+                //! Below prints tweets in json format
                 //System.out.println(tweet.getUser() + ":" + tweet.getText());
                 String json = DataObjectFactory.getRawJSON(tweet);
                 System.out.println(json);
-                System.out.println();
             }
 
             System.exit(0);
