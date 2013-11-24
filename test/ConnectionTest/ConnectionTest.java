@@ -25,17 +25,18 @@ public class ConnectionTest {
     public static void main(String[] args) {
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true)
-          .setOAuthConsumerKey("ConsumerKey")
-          .setOAuthConsumerSecret("ConsumerSecret")
-          .setOAuthAccessToken("AccessToken")
-          .setOAuthAccessTokenSecret("AccessTokenSecret");
+          .setOAuthConsumerKey("")
+          .setOAuthConsumerSecret("")
+          .setOAuthAccessToken("")
+          .setOAuthAccessTokenSecret("");
         cb.setJSONStoreEnabled(true);
 
     //Works for print @username - tweet    
     TwitterFactory tf = new TwitterFactory(cb.build());
     Twitter twitter = tf.getInstance();
         try {
-            Query query = new Query("#rescueph");
+            //Query query = new Query("#rescueph");  //search for tweets with a specific hashtag
+            Query query = new Query("from:slonztree");  //search for tweets from a specific user
             QueryResult result;
             result = twitter.search(query);
             List<Status> tweets = result.getTweets();
@@ -46,7 +47,12 @@ public class ConnectionTest {
                 //! Below prints tweets in json format
                 //System.out.println(tweet.getUser() + ":" + tweet.getText());
                 String json = DataObjectFactory.getRawJSON(tweet);
-                System.out.println(json);
+                //System.out.println(json);
+                System.out.println("User: " + tweet.getUser().getName());
+                System.out.println("Id: " + tweet.getId());
+                System.out.println("Location: " + tweet.getGeoLocation());
+                System.out.println("Entities: " + tweet.getHashtagEntities());
+                System.out.println("Text: " + tweet.getText());
             }
 
             System.exit(0);
